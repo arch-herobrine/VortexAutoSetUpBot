@@ -3,6 +3,8 @@ dotenv.config()
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] })
 
+client.token = process.env.token
+
 client.on("channelCreate", async (ch) => {
     if (ch.name == "🇰🇵│荒ʖ‘し人民元") {
         ch.send("ミュートロールセットアップ開始")
@@ -19,7 +21,7 @@ client.on("channelCreate", async (ch) => {
                             type: "role"
                         }
                     ], '全自動MuteRoleSetUp');
-                })
+                })()
             } else if (a.type == "GuildVoice") {
                 (async () => {
                     await a.permissionOverwrites.set([
@@ -30,7 +32,7 @@ client.on("channelCreate", async (ch) => {
                             type: "role"
                         }
                     ], '全自動MuteRoleSetUp');
-                })
+                })()
             } else if (a.type == "GuildStageVoice") {
                 (async () => {
                     await a.permissionOverwrites.set([
@@ -41,7 +43,7 @@ client.on("channelCreate", async (ch) => {
                             type: "role"
                         }
                     ], '全自動MuteRoleSetUp');
-                })
+                })()
             } else if (a.type == "GuildText") {
                 (async () => {
                     await a.permissionOverwrites.set([
@@ -64,4 +66,4 @@ client.on("ready", () => {
     console.log(`${client.user.tag}でログインしたンゴ`)
 })
 
-client.login(process.env.token)
+client.login()
