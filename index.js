@@ -16,7 +16,7 @@ client.on("messageCreate",(msg)=>{
     }else if(msg.content == "こんにちは"){
         msg.reply("とっとと帰れ")
     }else if(msg.content == "負けました"){
-        msg.reply("https://tenor.com/ja/view/aori-gif-18276293")
+        msg.reply("https://tenor.com/view/aori-gif-18276293")
     }
 })
 
