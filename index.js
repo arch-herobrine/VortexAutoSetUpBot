@@ -15,6 +15,8 @@ client.on("messageCreate",(msg)=>{
         msg.reply(`${client.ws.ping}ms`)
     }else if(msg.content == "こんにちは"){
         msg.reply("とっとと帰れ")
+    }else if(msg.content == "負けました"){
+        msg.reply("https://tenor.com/ja/view/aori-gif-18276293")
     }
 })
 
