@@ -28,13 +28,13 @@ function array2Collection(messages) {
     return new Collection(messages.slice().sort((a, b) => BigInt(b.id) - BigInt(a.id)).map(e => [e.id, e]));
 }
 
-setInterval(function () {
+setTimeout(function(){setInterval(function () {
     if (dayjs().utc().hour() == 6 || dayjs().utc().hour() == 12 || dayjs().utc().hour() == 18 || dayjs().utc().hour() == 0){
         process.exit(0)
     }else{
         return
     }
-},1)
+},1)},60000)
 
 async function fetchMany(channel, options = { limit: 50 }) {
     if ((options.limit ?? 50) <= 100) {
