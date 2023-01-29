@@ -13,6 +13,8 @@ client.on("messageCreate",(msg)=>{
         msg.reply("あ゛ぁ゛？")
     }else if(msg.content == "arch!ping"){
         msg.reply(`${client.ws.ping}ms`)
+    }else if(msg.content == "こんにちは"){
+        msg.reply("とっとと帰れ")
     }
 })
 
