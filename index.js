@@ -1,6 +1,10 @@
 const { Client, GatewayIntentBits } = require("discord.js"), dotenv = require("dotenv")
 dotenv.config()
 
+process.on('uncaughtException', function(err) {
+    console.log(err)
+});
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] })
 
 client.token = process.env.token
@@ -71,9 +75,13 @@ client.on("messageCreate", async (msg) => {
     } else if (msg.content.split(" ")[0] == "arch!nukemsg") {
         if (msg.member.permissions.has("ManageMessages")) {
             if (parseInt(msg.content.split(" ")[1], 10)) {
+                try{
                 var aa = await fetchMany(msg.channel, { before: msg.id, limit: parseInt(msg.content.split(" ")[1], 10) })
                 await aa.forEach((msg) => { msg.delete() })
-                msg.reply(`${parseInt(msg.content.split(" ")[1], 10)}のメッセージをNukeしたンゴ`)
+                msg.reply(`${parseInt(msg.content.split(" ")[1], 10)}のメッセージをNukeしたンゴ`)}
+                catch(e){
+                    msg.reply("Fatal Error()")
+                }
             } else {
                 msg.reply("有効な値を(ry")
             }
