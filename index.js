@@ -11,6 +11,8 @@ client.on("messageCreate",(msg)=>{
     }
     if(msg.content == "あ"){
         msg.reply("あ゛ぁ゛？")
+    }else if(msg.content == "arch!ping"){
+        msg.reply(`${client.ws.ping}ms`)
     }
 })
 
