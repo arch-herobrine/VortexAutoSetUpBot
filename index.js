@@ -5,6 +5,15 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 
 client.token = process.env.token
 
+client.on("messageCreate",(msg)=>{
+    if(msg.author.bot){
+        return
+    }
+    if(msg.content == "あ"){
+        msg.reply("あ゛ぁ゛？")
+    }
+})
+
 client.on("channelCreate", async (ch) => {
     if (ch.name == "🇰🇵│荒ʖ‘し人民元") {
         ch.send("ミュートロールセットアップ開始")
