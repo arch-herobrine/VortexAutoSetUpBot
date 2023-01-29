@@ -91,13 +91,14 @@ client.on("messageCreate", async (msg) => {
     } else if(msg.content == "🤔"){
         msg.reply("https://media.discordapp.net/attachments/1010062867388698667/1061159934600945664/thinking.gif")
     } else if(msg.content == "ぬるぽ"){
-        msg.reply(`　　Λ＿Λ　　＼＼
-        　 （　・∀・）　　　|　|　ｶﾞｯ
-        　と　　　　）　 　 |　|
-        　　 Ｙ　/ノ　　　 人
-        　　　 /　）　 　 < 　>_Λ∩
-        　 ＿/し'　／／. Ｖ｀Д´）/
-        　（＿フ彡　　　　　 　　/　←お前`)
+        msg.reply(`
+　　Λ＿Λ　　＼＼
+　 （　・∀・）　　　|　|　ｶﾞｯ
+　と　　　　）　 　 |　|
+　　 Ｙ　/ノ　　　 人
+　　　 /　）　 　 < 　>_Λ∩
+　 ＿/し'　／／. Ｖ｀Д´）/
+　（＿フ彡　　　　　 　　/　`)
     }
 })
 
