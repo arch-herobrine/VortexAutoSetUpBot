@@ -73,7 +73,7 @@ client.on("messageCreate", async (msg) => {
             if (parseInt(msg.content.split(" ")[1], 10)) {
                 var aa = await fetchMany(msg.channel, { before: msg.id, limit: parseInt(msg.content.split(" ")[1], 10) })
                 await aa.forEach((msg) => { msg.delete() })
-                msg.reply(`${aa.length}のメッセージをNukeしたンゴ`)
+                msg.reply(`${parseInt(msg.content.split(" ")[1], 10)}のメッセージをNukeしたンゴ`)
             } else {
                 msg.reply("有効な値を(ry")
             }
