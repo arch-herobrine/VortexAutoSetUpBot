@@ -88,6 +88,8 @@ client.on("messageCreate", async (msg) => {
         } else {
             msg.reply({content:"お前に権限ねーから！",files:["お前の席ねーから.png"]})
         }
+    } else if(msg.content == "🤔"){
+        msg.reply("https://media.discordapp.net/attachments/1010062867388698667/1061159934600945664/thinking.gif")
     }
 })
 
