@@ -6,7 +6,11 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 client.token = process.env.token
 
 client.on("messageCreate",(msg)=>{
+    if(msg.content == "このチャンネルのNukeに成功しました")
     if(msg.author.bot){
+        if(msg.content == "このチャンネルのNukeに成功しました"){
+            msg.reply("いつからNuke成功したと錯覚していた?(負け惜しみ)")
+        }
         return
     }
     if(msg.content == "あ"){
