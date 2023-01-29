@@ -1,9 +1,19 @@
 const { Client, GatewayIntentBits } = require("discord.js"), dotenv = require("dotenv")
 dotenv.config()
 
-process.on('uncaughtException', function(err) {
+process.on('uncaughtException', function (err) {
     console.log(err)
 });
+
+var ga = `\`\`\`
+　　Λ＿Λ　　＼＼
+　 （　・∀・）　　　|　|　ｶﾞｯ
+　と　　　　）　 　 |　|
+　　 Ｙ　/ノ　　　 人
+　　　 /　）　 　 < 　>_Λ∩
+　 ＿/し'　／／. Ｖ｀Д´）/
+　（＿フ彡　　　　　 　　/　
+\`\`\``
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] })
 
@@ -75,31 +85,36 @@ client.on("messageCreate", async (msg) => {
     } else if (msg.content.split(" ")[0] == "arch!nukemsg") {
         if (msg.member.permissions.has("ManageMessages")) {
             if (parseInt(msg.content.split(" ")[1], 10)) {
-                try{
-                var aa = await fetchMany(msg.channel, { before: msg.id, limit: parseInt(msg.content.split(" ")[1], 10) })
-                await aa.forEach((msg) => { msg.delete() })
-                msg.reply(`${parseInt(msg.content.split(" ")[1], 10)}のメッセージをNuke中(たまに時間かかるよ!)`)}
-                catch(e){
+                try {
+                    var aa = await fetchMany(msg.channel, { before: msg.id, limit: parseInt(msg.content.split(" ")[1], 10) })
+                    await aa.forEach((msg) => { msg.delete() })
+                    msg.reply(`${parseInt(msg.content.split(" ")[1], 10)}のメッセージをNuke中(たまに時間かかるよ!)`)
+                }
+                catch (e) {
                     msg.reply("Fatal Error()")
                 }
             } else {
                 msg.reply("有効な値を(ry")
             }
         } else {
-            msg.reply({content:"お前に権限ねーから！",files:["お前の席ねーから.png"]})
+            msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
-    } else if(msg.content == "🤔"){
+    } else if (msg.content == "🤔") {
         msg.reply("https://media.discordapp.net/attachments/1010062867388698667/1061159934600945664/thinking.gif")
-    } else if(msg.content == "ぬるぽ"){
-        msg.reply(`\`\`\`
-　　Λ＿Λ　　＼＼
-　 （　・∀・）　　　|　|　ｶﾞｯ
-　と　　　　）　 　 |　|
-　　 Ｙ　/ノ　　　 人
-　　　 /　）　 　 < 　>_Λ∩
-　 ＿/し'　／／. Ｖ｀Д´）/
-　（＿フ彡　　　　　 　　/　
-\`\`\``)
+    } else if (msg.content == "ぬるぽ") {
+        msg.reply(ga)
+    } else if (msg.content == "かそ"||msg.content == "過疎"){
+        msg.reply("過疎")
+        msg.reply("過疎")
+        msg.reply("過疎")
+        msg.reply("過疎")
+        msg.reply("過疎")
+        msg.reply("過疎")
+        msg.reply("過疎")
+        msg.reply("過疎")
+        msg.reply("過疎")
+        msg.reply("過疎")
+        
     }
 })
 
