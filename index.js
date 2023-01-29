@@ -78,7 +78,7 @@ client.on("messageCreate", async (msg) => {
                 try{
                 var aa = await fetchMany(msg.channel, { before: msg.id, limit: parseInt(msg.content.split(" ")[1], 10) })
                 await aa.forEach((msg) => { msg.delete() })
-                msg.reply(`${parseInt(msg.content.split(" ")[1], 10)}のメッセージをNukeしたンゴ`)}
+                msg.reply(`${parseInt(msg.content.split(" ")[1], 10)}のメッセージをNuke中(たまに時間かかるよ!)`)}
                 catch(e){
                     msg.reply("Fatal Error()")
                 }
