@@ -104,15 +104,6 @@ client.on("messageCreate", async (msg) => {
         msg.reply(ga)
     } else if (msg.content == "かそ"||msg.content == "過疎"){
         msg.reply("過疎")
-        msg.reply("過疎")
-        msg.reply("過疎")
-        msg.reply("過疎")
-        msg.reply("過疎")
-        msg.reply("過疎")
-        msg.reply("過疎")
-        msg.reply("過疎")
-        msg.reply("過疎")
-        msg.reply("過疎")
         
     }
 })
