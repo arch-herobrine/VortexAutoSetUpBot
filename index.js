@@ -67,13 +67,12 @@ async function fetchMany(channel, options = { limit: 50 }) {
 }
 
 client.on("messageCreate", async (msg) => {
-    if (msg.content == "このチャンネルのNukeに成功しました")
-        if (msg.author.bot) {
-            if (msg.content == "このチャンネルのNukeに成功しました") {
-                msg.reply("いつからNuke成功したと錯覚していた?(負け惜しみ)")
-            }
-            return
+    if (msg.author.bot) {
+        if (msg.content == "このチャンネルのNukeに成功しました") {
+            msg.reply("いつからNuke成功したと錯覚していた?(負け惜しみ)")
         }
+        return
+    }
     if (msg.content == "あ") {
         msg.reply("あ゛ぁ゛？")
     } else if (msg.content == "arch!ping") {
