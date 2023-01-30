@@ -119,30 +119,33 @@ client.on("messageCreate", async (msg) => {
     } else if (msg.content == "かそ" || msg.content == "過疎") {
         msg.reply("過疎")
     } else if (msg.content == "arch!help") {
-        msg.reply({"content":"Botコマンド一覧",
-            "embed": {
-                "title": "コマンド一覧",
-                "description": "順次追加予定",
-                "color": 3998965,
-                "timestamp": "2023-01-30T23:06:06.853Z",
-                "footer": {
-                    "text": "created by arch-herobrine#3053"
-                },
-                "fields": [
-                    {
-                        "name": "arch!help",
-                        "value": "これ"
+        msg.reply({
+            "content": "Botコマンド一覧",
+            "embeds": [
+                {
+                    "title": "コマンド一覧",
+                    "description": "順次追加予定",
+                    "color": 3998965,
+                    "timestamp": "2023-01-30T23:06:06.853Z",
+                    "footer": {
+                        "text": "created by arch-herobrine#3053"
                     },
-                    {
-                        "name": "arch!nukemsg <メッセージ数(数字)>",
-                        "value": "権限ないと使えないやつ。Vortexの`>>clear`の劣化版。101以上を指定するとバグる"
-                    },
-                    {
-                        "name": "arch!ping",
-                        "value": "ping"
-                    }
-                ]
-            }
+                    "fields": [
+                        {
+                            "name": "arch!help",
+                            "value": "これ"
+                        },
+                        {
+                            "name": "arch!nukemsg <メッセージ数(数字)>",
+                            "value": "権限ないと使えないやつ。Vortexの`>>clear`の劣化版。101以上を指定するとバグる"
+                        },
+                        {
+                            "name": "arch!ping",
+                            "value": "ping"
+                        }
+                    ]
+                }
+            ]
         })
     }
 })
