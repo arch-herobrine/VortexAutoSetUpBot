@@ -119,7 +119,7 @@ client.on("messageCreate", async (msg) => {
     } else if (msg.content == "かそ" || msg.content == "過疎") {
         msg.reply("過疎")
     } else if (msg.content == "arch!help") {
-        msg.reply({
+        msg.reply({"content":"Botコマンド一覧",
             "embed": {
                 "title": "コマンド一覧",
                 "description": "順次追加予定",
