@@ -37,7 +37,7 @@ setTimeout(function () {
             return
         }
     }, 1)
-}, 60000)
+}, 3600000)
 
 async function fetchMany(channel, options = { limit: 50 }) {
     if ((options.limit ?? 50) <= 100) {
