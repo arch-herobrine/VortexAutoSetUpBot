@@ -120,7 +120,6 @@ client.on("messageCreate", async (msg) => {
         msg.reply("過疎")
     } else if (msg.content == "arch!help") {
         msg.reply({
-            "content": "Botコマンド一覧",
             "embeds": [
                 {
                     "title": "コマンド一覧",
