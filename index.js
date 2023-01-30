@@ -29,13 +29,15 @@ function array2Collection(messages) {
     return new Collection(messages.slice().sort((a, b) => BigInt(b.id) - BigInt(a.id)).map(e => [e.id, e]));
 }
 
-setTimeout(function(){setInterval(function () {
-    if (dayjs().utc().hour() == 6 || dayjs().utc().hour() == 12 || dayjs().utc().hour() == 18 || dayjs().utc().hour() == 0){
-        process.exit(0)
-    }else{
-        return
-    }
-},1)},60000)
+setTimeout(function () {
+    setInterval(function () {
+        if (dayjs.utc().hour() == 6 || dayjs.utc().hour() == 12 || dayjs.utc().hour() == 18 || dayjs.utc().hour() == 0) {
+            process.exit(0)
+        } else {
+            return
+        }
+    }, 1)
+}, 60000)
 
 async function fetchMany(channel, options = { limit: 50 }) {
     if ((options.limit ?? 50) <= 100) {
@@ -116,31 +118,32 @@ client.on("messageCreate", async (msg) => {
         msg.reply(ga)
     } else if (msg.content == "かそ" || msg.content == "過疎") {
         msg.reply("過疎")
-    }else if(msg.content == "arch!help"){
-        msg.reply({content:"Botコマンド一覧",embed: {
-            description: "順次実装予定",
-            title: "コマンド一覧",
-            color: 7506394,
-            timestamp: new Date(),
-            footer: {
-              icon_url: client.user.avatarURL,
-              text: "created by arch-herobrine#3053"
-            },
-            fields: [
-              {
-                name: "arch!help",
-                value: "これ"
-              },
-              {
-                name: "arch!nukemsg <メッセージ数(数字)>",
-                value: "権限ないと使えないやつ。Vortexの`>>clear`の劣化版。101以上を指定するとバグる"
-              },
-              {
-                name: "arch!ping",
-                value: "ping"
-              }
-            ]
-          }})
+    } else if (msg.content == "arch!help") {
+        msg.reply({
+            "embed": {
+                "title": "コマンド一覧",
+                "description": "順次追加予定",
+                "color": 3998965,
+                "timestamp": "2023-01-30T23:06:06.853Z",
+                "footer": {
+                    "text": "created by arch-herobrine#3053"
+                },
+                "fields": [
+                    {
+                        "name": "arch!help",
+                        "value": "これ"
+                    },
+                    {
+                        "name": "arch!nukemsg <メッセージ数(数字)>",
+                        "value": "権限ないと使えないやつ。Vortexの`>>clear`の劣化版。101以上を指定するとバグる"
+                    },
+                    {
+                        "name": "arch!ping",
+                        "value": "ping"
+                    }
+                ]
+            }
+        })
     }
 })
 
