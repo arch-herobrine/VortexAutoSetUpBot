@@ -87,7 +87,7 @@ client.on("messageCreate", async (msg) => {
     if (msg.content == "あ") {
         msg.reply("あ゛ぁ゛？")
     } else if (msg.content == "arch!ping") {
-        msg.reply(`ws:${client.ws.ping}ms\nAPIレイテンシ:${Date.now() - message.createdTimestamp}ms`)
+        msg.reply(`ws:${client.ws.ping}ms\nAPIレイテンシ:${Date.now() - msg.createdTimestamp}ms`)
     } else if (msg.content == "こんにちは") {
         msg.reply("とっとと帰れ")
     } else if (msg.content == "負けました" || msg.content == "勝ちました") {
