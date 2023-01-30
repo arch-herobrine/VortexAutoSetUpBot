@@ -3,6 +3,7 @@ dotenv.config()
 
 const dayjs = require("dayjs")
 const utc = require('dayjs/plugin/utc')
+dayjs().format()
 
 process.on('uncaughtException', function (err) {
     console.log(err)
@@ -115,7 +116,31 @@ client.on("messageCreate", async (msg) => {
         msg.reply(ga)
     } else if (msg.content == "かそ" || msg.content == "過疎") {
         msg.reply("過疎")
-
+    }else if(msg.content == "arch!help"){
+        msg.reply({embed: {
+            description: "順次実装予定",
+            title: "コマンド一覧",
+            color: 7506394,
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "created by arch-herobrine#3053"
+            },
+            fields: [
+              {
+                name: "arch!help",
+                value: "これ"
+              },
+              {
+                name: "arch!nukemsg <メッセージ数(数字)>",
+                value: "権限ないと使えないやつ。Vortexの`>>clear`の劣化版。101以上を指定するとバグる"
+              },
+              {
+                name: "arch!ping",
+                value: "ping"
+              }
+            ]
+          }})
     }
 })
 
