@@ -117,7 +117,7 @@ client.on("messageCreate", async (msg) => {
     } else if (msg.content == "かそ" || msg.content == "過疎") {
         msg.reply("過疎")
     }else if(msg.content == "arch!help"){
-        msg.reply({embed: {
+        msg.reply({content:"Botコマンド一覧",embed: {
             description: "順次実装予定",
             title: "コマンド一覧",
             color: 7506394,
