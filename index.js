@@ -146,6 +146,15 @@ client.on("messageCreate", async (msg) => {
                 }
             ]
         })
+    } else if (msg.content == "hello") {
+        msg.channel.awaitMessages({ filter: () => true, max: 1, time: kasotime * 1000 })
+            .then(collected => {
+                if (!collected.size) {
+                    msg.reply({ files: ["butNobodyCame.png"] })
+                } else {
+                    return
+                }
+            })
     }
 })
 
