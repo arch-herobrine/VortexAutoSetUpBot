@@ -165,7 +165,7 @@ client.on("messageCreate", async (msg) => {
                     if (msg.guild.members.cache.get(msg.content.split(" ")[1])) {
                         msg.guild.members.cache.get(msg.content.split(" ")[1]).timeout(parseInt(msg.content.split(" ")[2], 10) * 1000, `${msg.author.tag}が実行しやがりました`).then(() => {
                             msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}をタイムアウトしたンゴ`)
-                        }).catch(() => { msg.reply("Fatal Error()") })
+                        })
                     } else {
                         msg.reply("Fatal Error()")
                     }
