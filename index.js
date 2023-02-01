@@ -159,7 +159,7 @@ client.on("messageCreate", async (msg) => {
                 }
             })
     } else if (msg.content.split(" ")[0] == "arch!timeout") {
-        if (msg.member.permissions.has("MODERATE_MEMBERS")) {
+        if (msg.member.permissions.has("ModerateMembers")) {
             if (parseInt(msg.content.split(" ")[2], 10)) {
                 try {
                     if (msg.guild.members.cache.get(msg.content.split(" ")[1])) {
