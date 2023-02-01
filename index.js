@@ -32,7 +32,7 @@ function array2Collection(messages) {
 setTimeout(function () {
     setInterval(function () {
         if (dayjs.utc().hour() == 6 || dayjs.utc().hour() == 12 || dayjs.utc().hour() == 18 || dayjs.utc().hour() == 0) {
-            process.exit(0)
+            client.destroy()
         } else {
             return
         }
