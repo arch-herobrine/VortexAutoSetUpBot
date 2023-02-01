@@ -171,6 +171,7 @@ client.on("messageCreate", async (msg) => {
                     }
                 }
                 catch (e) {
+                    console.log(e)
                     msg.reply("Fatal Error()")
                 }
             } else {
