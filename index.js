@@ -141,13 +141,16 @@ client.on("messageCreate", async (msg) => {
                         {
                             "name": "arch!ping",
                             "value": "ping"
+                        }, {
+                            "name": "arch!timeout <対象のメンバーのid> <時間(秒数指定)>",
+                            "value": "要権限。監査ログには実行者のタグが入る。"
                         }
                     ]
                 }
             ]
         })
     } else if (msg.content == "hello") {
-        msg.channel.awaitMessages({ filter: () => true, max: 1, time:10000 })
+        msg.channel.awaitMessages({ filter: () => true, max: 1, time: 10000 })
             .then(collected => {
                 if (!collected.size) {
                     msg.reply({ files: ["butNobodyCame.png"] })
@@ -155,6 +158,27 @@ client.on("messageCreate", async (msg) => {
                     return
                 }
             })
+    } else if (msg.content.split(" ")[0] == "arch!timeout") {
+        if (msg.member.permissions.has("MODERATE_MEMBERS")) {
+            if (parseInt(msg.content.split(" ")[2], 10)) {
+                try {
+                    if (msg.guild.members.cache.get(msg.content.split(" ")[1])) {
+                        msg.guild.members.cache.get(msg.content.split(" ")[1]).timeout(parseInt(msg.content.split(" ")[2], 10) * 1000, `${msg.author.tag}が実行しやがりました`).then(() => {
+                            msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}をタイムアウトしたンゴ`)
+                        }).catch(() => { msg.reply("Fatal Error()") })
+                    } else {
+                        msg.reply("Fatal Error()")
+                    }
+                }
+                catch (e) {
+                    msg.reply("Fatal Error()")
+                }
+            } else {
+                msg.reply("有効な値を(ry")
+            }
+        } else {
+            msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
+        }
     }
 })
 
