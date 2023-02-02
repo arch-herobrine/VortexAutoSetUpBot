@@ -312,7 +312,7 @@ client.on("channelCreate", async (ch) => {
                 (async () => {
                     await a.permissionOverwrites.set([
                         {
-                            id: '1054247482365853776',
+                            id: '1070580833360027668',
                             allow: [],
                             deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS", "CONNECT", "SPEAK"],
                             type: "role"
@@ -323,7 +323,7 @@ client.on("channelCreate", async (ch) => {
                 (async () => {
                     await a.permissionOverwrites.set([
                         {
-                            id: '1054247482365853776',
+                            id: '1070580833360027668',
                             allow: [],
                             deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS", "CONNECT", "SPEAK"],
                             type: "role"
@@ -334,7 +334,7 @@ client.on("channelCreate", async (ch) => {
                 (async () => {
                     await a.permissionOverwrites.set([
                         {
-                            id: '1054247482365853776',
+                            id: '1070580833360027668',
                             allow: [],
                             deny: ["CONNECT"],
                             type: "role"
@@ -345,7 +345,7 @@ client.on("channelCreate", async (ch) => {
                 (async () => {
                     await a.permissionOverwrites.set([
                         {
-                            id: '1054247482365853776',
+                            id: '1070580833360027668',
                             allow: [],
                             deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS"],
                             type: "role"
