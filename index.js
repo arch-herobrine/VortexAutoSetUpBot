@@ -9,13 +9,25 @@ process.on('uncaughtException', function (err) {
     console.log(err)
 });
 
+//java.lang.NullPointerExceptionをぬるぽと呼ぶスレ
+//>>1
+//　ぬるぽ
+//>>2
+//　　Λ＿Λ　　＼＼
+//　 （　・∀・）　　　|　|　ｶﾞｯ
+//　と　　　　）　 　 |　|
+//　　 Ｙ　/ノ　　　 人
+//　　　 /　）　 　 < 　>_Λ∩
+//　 ＿/し'　／／. Ｖ｀Д´）/←>>1
+//　（＿フ彡　　　　　 　　/　
+
 var ga = `\`\`\`
 　　Λ＿Λ　　＼＼
 　 （　・∀・）　　　|　|　ｶﾞｯ
 　と　　　　）　 　 |　|
 　　 Ｙ　/ノ　　　 人
 　　　 /　）　 　 < 　>_Λ∩
-　 ＿/し'　／／. Ｖ｀Д´）/
+　 ＿/し'　／／. Ｖ｀Д´）/←you
 　（＿フ彡　　　　　 　　/　
 \`\`\``
 
@@ -23,12 +35,11 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 
 client.token = process.env.token
 
-const { Collection } = require("@discordjs/collection");
 
-function array2Collection(messages) {
-    return new Collection(messages.slice().sort((a, b) => BigInt(b.id) - BigInt(a.id)).map(e => [e.id, e]));
-}
 
+
+
+//多重起動防止
 setTimeout(function () {
     setInterval(function () {
         if (dayjs.utc().hour() == 6 || dayjs.utc().hour() == 12 || dayjs.utc().hour() == 18 || dayjs.utc().hour() == 0) {
@@ -39,6 +50,11 @@ setTimeout(function () {
     }, 1)
 }, 3600000)
 
+//無能関数s
+function array2Collection(messages) {
+    return new Collection(messages.slice().sort((a, b) => BigInt(b.id) - BigInt(a.id)).map(e => [e.id, e]));
+}
+const { Collection } = require("@discordjs/collection");
 async function fetchMany(channel, options = { limit: 50 }) {
     if ((options.limit ?? 50) <= 100) {
         return channel.messages.fetch(options);
@@ -80,6 +96,10 @@ async function fetchMany(channel, options = { limit: 50 }) {
     return array2Collection(messages);
 }
 
+
+
+
+//commands
 client.on("messageCreate", async (msg) => {
     if (msg.author.bot) {
         if (msg.content == "このチャンネルのNukeに成功しました") {
@@ -133,17 +153,27 @@ client.on("messageCreate", async (msg) => {
                         {
                             "name": "arch!help",
                             "value": "これ"
-                        },
-                        {
+                        }, {
                             "name": "arch!nukemsg <メッセージ数(数字)>",
-                            "value": "権限ないと使えないやつ。Vortexの`>>clear`の劣化版。101以上を指定するとバグる"
-                        },
-                        {
+                            "value": "メッセ管理権限ないと使えないやつ。Vortexの`>>clear`の劣化版。101以上を指定するとバグる"
+                        }, {
                             "name": "arch!ping",
                             "value": "ping"
                         }, {
                             "name": "arch!timeout <対象のメンバーのid> <時間(秒数指定)>",
-                            "value": "要権限。監査ログには実行者のタグが入る。"
+                            "value": "要タイムアウト権限。監査ログには実行者のタグが入る。"
+                        }, {
+                            "name": "arch!untimeout <対象のメンバーのid>",
+                            "value": "要タイムアウト権限。こっちも監査ログには実行者のタグが入る。"
+                        }, {
+                            "name": "arch!kick <対象のメンバーのid>",
+                            "value": "要キック権限。こっちも監査ログには実行者のタグが入る。"
+                        }, {
+                            "name": "arch!ban <対象のメンバーのid>",
+                            "value": "要BAN権限。こっちも監査ログには実行者のタグが入る。"
+                        }, {
+                            "name": "arch!unban <対象のユーザーのid>",
+                            "value": "要BAN権限。こっちも監査ログには実行者のタグが入る。"
                         }
                     ]
                 }
@@ -199,9 +229,79 @@ client.on("messageCreate", async (msg) => {
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
+    } else if (msg.content.split(" ")[0] == "arch!kick") {
+        if (msg.member.permissions.has("KickMembers")) {
+            if ((await msg.guild.members.fetch(msg.content.split(" ")[1])).kickable) {
+                try {
+                    if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
+                        (await msg.guild.members.fetch(msg.content.split(" ")[1])).kick(`${msg.author.tag}が実行しやがりました`).then(() => {
+                            msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}をこの鯖から蹴っときますた`)
+                        })
+                    } else {
+                        msg.reply("Fatal Error()")
+                    }
+                }
+                catch (e) {
+                    console.log(e)
+                    msg.reply("Fatal Error()")
+                }
+            } else {
+                msg.reply("俺に権原が足りないンゴ...()")
+            }
+        } else {
+            msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
+        }
+    } else if (msg.content.split(" ")[0] == "arch!ban") {
+        if (msg.member.permissions.has("BanMembers")) {
+            if ((await msg.guild.members.fetch(msg.content.split(" ")[1])).bannable) {
+                try {
+                    if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
+                        (await msg.guild.members.fetch(msg.content.split(" ")[1])).ban(`${msg.author.tag}が実行しやがりました`).then(() => {
+                            msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}をこの鯖からBANしときますた`)
+                        })
+                    } else {
+                        msg.reply("Fatal Error()")
+                    }
+                }
+                catch (e) {
+                    console.log(e)
+                    msg.reply("Fatal Error()")
+                }
+            } else {
+                msg.reply("俺に権原が足りないンゴ...()")
+            }
+        } else {
+            msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
+        }
+    } else if (msg.content.split(" ")[0] == "arch!unban") {
+        if (msg.member.permissions.has("BanMembers")) {
+            if ((await client.users.fetch(msg.content.split(" ")[1]))) {
+                try {
+                    if ((await client.users.fetch(msg.content.split(" ")[1]))) {
+                        msg.guild.members.unban(msg.content.split(" ")[1])
+                        msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}のBAN解除しときますた`)
+
+                    } else {
+                        msg.reply("Fatal Error()")
+                    }
+                }
+                catch (e) {
+                    console.log(e)
+                    msg.reply("Fatal Error()")
+                }
+            } else {
+                msg.reply("俺に権原が足りないンゴ...()")
+            }
+        } else {
+            msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
+        }
     }
 })
 
+
+
+
+//共栄圏専用
 client.on("channelCreate", async (ch) => {
     if (ch.name == "🇰🇵│荒ʖ‘し人民元") {
         ch.send("ミュートロールセットアップ開始")
