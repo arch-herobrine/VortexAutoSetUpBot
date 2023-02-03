@@ -355,6 +355,6 @@ client.on("channelCreate", async (ch) => {
 
 client.on("ready", () => {
     emojis.check = client.emojis.resolve("1070948763616673862")
-    
+    console.log(`${client.user.tag}でログインしたンゴ`)
 })
 client.login()
