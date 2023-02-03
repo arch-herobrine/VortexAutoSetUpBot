@@ -3,6 +3,7 @@ dotenv.config()
 
 const dayjs = require("dayjs")
 const utc = require('dayjs/plugin/utc')
+dayjs.extend(utc)
 dayjs().format()
 
 process.on('uncaughtException', function (err) {
