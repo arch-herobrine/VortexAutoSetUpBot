@@ -192,7 +192,7 @@ client.on("messageCreate", async (msg) => {
                 try {
                     if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
                         (await msg.guild.members.fetch(msg.content.split(" ")[1])).timeout(parseInt(msg.content.split(" ")[2], 10) * 1000, `${msg.author.tag}が実行しやがりました`).then(() => {
-                            msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}をタイムアウトしたンゴ`)
+                            msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}をタイムアウトしたンゴ`)
                         })
                     } else {
                         msg.reply("Fatal Error()")
@@ -214,7 +214,7 @@ client.on("messageCreate", async (msg) => {
             try {
                 if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
                     (await msg.guild.members.fetch(msg.content.split(" ")[1])).timeout(null, `${msg.author.tag}が実行しやがりました`).then(() => {
-                        msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}のタイムアウト解除したンゴ`)
+                        msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}のタイムアウト解除したンゴ`)
                     })
                 } else {
                     msg.reply("Fatal Error()")
@@ -233,7 +233,7 @@ client.on("messageCreate", async (msg) => {
                 try {
                     if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
                         (await msg.guild.members.fetch(msg.content.split(" ")[1])).kick(`${msg.author.tag}が実行しやがりました`).then(() => {
-                            msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}をこの鯖から蹴っときますた`)
+                            msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}をこの鯖から蹴っときますた`)
                         })
                     } else {
                         msg.reply("Fatal Error()")
@@ -255,7 +255,7 @@ client.on("messageCreate", async (msg) => {
                 try {
                     if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
                         (await msg.guild.members.fetch(msg.content.split(" ")[1])).ban(`${msg.author.tag}が実行しやがりました`).then(() => {
-                            msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}をこの鯖からBANしときますた`)
+                            msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}をこの鯖からBANしときますた`)
                         })
                     } else {
                         msg.reply("Fatal Error()")
@@ -277,7 +277,7 @@ client.on("messageCreate", async (msg) => {
                 try {
                     if ((await client.users.fetch(msg.content.split(" ")[1]))) {
                         msg.guild.members.unban(msg.content.split(" ")[1])
-                        msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}のBAN解除しときますた`)
+                        msg.reply(`${client.users.cache.get(msg.content.split(" ")[1]).tag}のBAN解除しときますた`)
 
                     } else {
                         msg.reply("Fatal Error()")
