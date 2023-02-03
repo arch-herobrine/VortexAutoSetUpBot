@@ -303,7 +303,7 @@ client.on("messageCreate", async (msg) => {
 
 //共栄圏専用
 client.on("channelCreate", async (ch) => {
-    if (ch.name == "🇰🇵│荒ʖ‘し人民元") {
+    if (ch.name == "🇰🇵┃荒ʖ‘し人民元") {
         ch.send("ミュートロールセットアップ開始")
         var chs = JSON.parse(JSON.stringify(ch.guild))
         await chs.channels.forEach(function (i) {
