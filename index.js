@@ -41,7 +41,7 @@ client.token = process.env.token
 
 
 //絵文字s
-var emojis={}
+var emojis = {}
 
 
 //無能関数s
@@ -354,9 +354,6 @@ client.on("channelCreate", async (ch) => {
 )
 
 client.on("ready", () => {
-emojis.check = client.emojis.find('name', 'check_mark_gif');
-    console.log(`${client.user.tag}でログインしたンゴ`)
+    emojis.check = client.emojis.resolve("1070948763616673862")
+    client.login()
 })
-
-client.login()
-
