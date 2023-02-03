@@ -6,12 +6,7 @@ const utc = require('dayjs/plugin/utc')
 dayjs.extend(utc)
 dayjs().format()
 
-//絵文字s
 
-var emojis = {
-    check:"<:check_mark_gif:1070948763616673862>"
-}
-emojis.check = client.emojis.find('name', 'check_mark_gif');
 
 process.on('uncaughtException', function (err) {
     console.log(err)
@@ -45,8 +40,11 @@ client.token = process.env.token
 
 
 
-
-
+//絵文字s
+var emojis = {
+    check:"<:check_mark_gif:1070948763616673862>"
+}
+emojis.check = client.emojis.find('name', 'check_mark_gif');
 
 
 //無能関数s
