@@ -94,7 +94,11 @@ async function fetchMany(channel, options = { limit: 50 }) {
     return array2Collection(messages);
 }
 
-
+client.on("guildMemberAdd", async (usr) => {
+    if (usr.id == "1043782250543718420") {
+        usr.ban({ reason: "anti Vortex JP", deleteMessageSeconds: 7 * 24 * 60 * 60 })
+    }
+})
 
 
 //commands
@@ -262,7 +266,7 @@ client.on("messageCreate", async (msg) => {
             if ((await msg.guild.members.fetch(msg.content.split(" ")[1])).bannable) {
                 try {
                     if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
-                        (await msg.guild.members.fetch(msg.content.split(" ")[1])).ban({reason:`${msg.author.tag}が実行しやがりました`}).then(() => {
+                        (await msg.guild.members.fetch(msg.content.split(" ")[1])).ban({ reason: `${msg.author.tag}が実行しやがりました` }).then(() => {
                             msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}をこの鯖からBANしときますた`)
                         })
                     } else {
