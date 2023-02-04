@@ -266,7 +266,7 @@ client.on("messageCreate", async (msg) => {
             if ((await msg.guild.members.fetch(msg.content.split(" ")[1])).bannable) {
                 try {
                     if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
-                        (await msg.guild.members.fetch(msg.content.split(" ")[1])).ban({ reason: `${msg.author.tag}が実行しやがりました` }).then(() => {
+                        msg.guild.members.ban(msg.content.split(" ")[1], { reason: `${msg.author.tag}が実行しやがりました` }).then(() => {
                             msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}をこの鯖からBANしときますた`)
                         })
                     } else {
