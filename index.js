@@ -185,18 +185,22 @@ client.on("messageCreate", async (msg) => {
     } else if (msg.content.split(" ")[0] == "arch!timeout") {
         if (msg.member.permissions.has("ModerateMembers")) {
             if (parseInt(msg.content.split(" ")[2], 10)) {
-                try {
-                    if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
-                        (await msg.guild.members.fetch(msg.content.split(" ")[1])).timeout(parseInt(msg.content.split(" ")[2], 10) * 1000, `${msg.author.tag}が実行しやがりました`).then(() => {
-                            msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}をタイムアウトしたンゴ`)
-                        })
-                    } else {
+                if ((await msg.guild.members.fetch(msg.content.split(" ")[1]).moderatable)) {
+                    try {
+                        if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
+                            (await msg.guild.members.fetch(msg.content.split(" ")[1])).timeout(parseInt(msg.content.split(" ")[2], 10) * 1000, `${msg.author.tag}が実行しやがりました`).then(() => {
+                                msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}をタイムアウトしたンゴ`)
+                            })
+                        } else {
+                            msg.reply("Fatal Error()")
+                        }
+                    }
+                    catch (e) {
+                        console.log(e)
                         msg.reply("Fatal Error()")
                     }
-                }
-                catch (e) {
-                    console.log(e)
-                    msg.reply("Fatal Error()")
+                } else {
+                    msg.reply("俺に権原が足りないンゴ...()")
                 }
             } else {
                 msg.reply("有効な値を(ry")
@@ -208,12 +212,16 @@ client.on("messageCreate", async (msg) => {
         if (msg.member.permissions.has("ModerateMembers")) {
 
             try {
-                if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
-                    (await msg.guild.members.fetch(msg.content.split(" ")[1])).timeout(null, `${msg.author.tag}が実行しやがりました`).then(() => {
-                        msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}のタイムアウト解除したンゴ`)
-                    })
+                if ((await msg.guild.members.fetch(msg.content.split(" ")[1]).moderatable)) {
+                    if ((await msg.guild.members.fetch(msg.content.split(" ")[1]))) {
+                        (await msg.guild.members.fetch(msg.content.split(" ")[1])).timeout(null, `${msg.author.tag}が実行しやがりました`).then(() => {
+                            msg.reply(`${emojis.check}${client.users.cache.get(msg.content.split(" ")[1]).tag}のタイムアウト解除したンゴ`)
+                        })
+                    } else {
+                        msg.reply("Fatal Error()")
+                    }
                 } else {
-                    msg.reply("Fatal Error()")
+                    msg.reply("俺に権原が足りないンゴ...()")
                 }
             }
             catch (e) {
