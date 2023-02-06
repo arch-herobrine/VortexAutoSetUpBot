@@ -74,9 +74,9 @@ client.on("messageCreate", async (msg) => {
     } else if (msg.content == "負けました" || msg.content == "勝ちました") {
         msg.reply("https://tenor.com/view/aori-gif-18276293")
     } else if (msg.content.split(" ")[0] == "arch!nukemsg") {
-        
 
-            msg.reply("無能すぎて廃止したンゴ...()")
+
+        msg.reply("無能すぎて廃止したンゴ...()")
 
     } else if (msg.content == "🤔") {
         msg.reply("https://media.discordapp.net/attachments/1010062867388698667/1061159934600945664/thinking.gif")
@@ -243,6 +243,28 @@ client.on("messageCreate", async (msg) => {
             } else {
                 msg.reply("俺に権原が足りないンゴ...()")
             }
+        } else {
+            msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
+        }
+    } else if (msg.content == "arch!lockdown") {
+        if (msg.member.permissions.has("ManageChannels") || isArch()) {
+            msg.channel.permissionOverwrites.set([{
+                id: msg.guild.roles.everyone,
+                allow: [],
+                deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS"],
+                type: "role"
+            }]).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) }).catch(() => { msg.reply("Fatal Error()") })
+        } else {
+            msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
+        }
+    } else if (msg.content == "arch!unlock") {
+        if (msg.member.permissions.has("ManageChannels") || isArch()) {
+            msg.channel.permissionOverwrites.set([{
+                id: msg.guild.roles.everyone,
+                allow: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS"],
+                deny: [],
+                type: "role"
+            }]).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) }).catch(() => { msg.reply("Fatal Error()") })
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
