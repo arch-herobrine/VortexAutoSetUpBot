@@ -48,51 +48,7 @@ client.token = process.env.token
 var emojis = {}
 
 
-//無能関数s
-function array2Collection(messages) {
-    return new Collection(messages.slice().sort((a, b) => BigInt(b.id) - BigInt(a.id)).map(e => [e.id, e]));
-}
-const { Collection } = require("@discordjs/collection");
-async function fetchMany(channel, options = { limit: 50 }) {
-    if ((options.limit ?? 50) <= 100) {
-        return channel.messages.fetch(options);
-    }
 
-    if (typeof options.around === "string") {
-        const messages = await channel.messages.fetch({ ...options, limit: 100 });
-        const limit = Math.floor((options.limit - 100) / 2);
-        if (messages.size < 100) {
-            return messages;
-        }
-        const backward = fetchMany(channel, { limit, before: messages.last().id });
-        const forward = fetchMany(channel, { limit, after: messages.first().id });
-        return array2Collection([messages, ...await Promise.all([backward, forward])].flatMap(
-            e => [...e.values()]
-        ));
-    }
-    let temp;
-    function buildParameter() {
-        const req_cnt = Math.min(options.limit - messages.length, 100);
-        if (typeof options.after === "string") {
-            const after = temp
-                ? temp.first().id : options.after
-            return { ...options, limit: req_cnt, after };
-        }
-        const before = temp
-            ? temp.last().id : options.before;
-        return { ...options, limit: req_cnt, before };
-    }
-    const messages = [];
-    while (messages.length < options.limit) {
-        const param = buildParameter();
-        temp = await channel.messages.fetch(param);
-        messages.push(...temp.values());
-        if (param.limit > temp.size) {
-            break;
-        }
-    }
-    return array2Collection(messages);
-}
 
 client.on("guildMemberAdd", async (usr) => {
     if (usr.id == "1043782250543718420") {
@@ -118,22 +74,10 @@ client.on("messageCreate", async (msg) => {
     } else if (msg.content == "負けました" || msg.content == "勝ちました") {
         msg.reply("https://tenor.com/view/aori-gif-18276293")
     } else if (msg.content.split(" ")[0] == "arch!nukemsg") {
-        if (msg.member.permissions.has("ManageMessages")) {
-            if (parseInt(msg.content.split(" ")[1], 10)) {
-                try {
-                    var aa = await fetchMany(msg.channel, { before: msg.id, limit: parseInt(msg.content.split(" ")[1], 10) })
-                    aa.forEach((msg) => { msg.delete() })
-                    msg.reply(`${parseInt(msg.content.split(" ")[1], 10)}のメッセージをNuke中(たまに時間かかるよ!)`)
-                }
-                catch (e) {
-                    msg.reply("Fatal Error()")
-                }
-            } else {
-                msg.reply("有効な値を(ry")
-            }
-        } else {
-            msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
-        }
+        
+
+            msg.reply("無能すぎて廃止したンゴ...()")
+
     } else if (msg.content == "🤔") {
         msg.reply("https://media.discordapp.net/attachments/1010062867388698667/1061159934600945664/thinking.gif")
     } else if (msg.content == "ぬるぽ") {
@@ -155,9 +99,6 @@ client.on("messageCreate", async (msg) => {
                         {
                             "name": "arch!help",
                             "value": "これ"
-                        }, {
-                            "name": "arch!nukemsg <メッセージ数(数字)>",
-                            "value": "メッセ管理権限ないと使えないやつ。Vortexの`>>clear`の劣化版。101以上を指定するとバグる"
                         }, {
                             "name": "arch!ping",
                             "value": "ping"
