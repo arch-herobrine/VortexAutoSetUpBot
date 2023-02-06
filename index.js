@@ -253,7 +253,7 @@ client.on("messageCreate", async (msg) => {
                 allow: [],
                 deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS"],
                 type: "role"
-            }]).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) }).catch((e) => { msg.reply(e) })
+            }],`${msg.author.tag}が実行しやがりました`).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) })
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
@@ -264,7 +264,7 @@ client.on("messageCreate", async (msg) => {
                 allow: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS"],
                 deny: [],
                 type: "role"
-            }]).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) }).catch((e) => { msg.reply(e) })
+            }],`${msg.author.tag}が実行しやがりました`).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) })
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
