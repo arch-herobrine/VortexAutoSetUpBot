@@ -261,7 +261,7 @@ client.on("messageCreate", async (msg) => {
         if (msg.member.permissions.has("ManageChannels") || isArch()) {
             msg.channel.permissionOverwrites.set([{
                 id: msg.guild.roles.everyone,
-                allow: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads"],
+                allow: [],
                 deny: [],
                 type: "role"
             }],`${msg.author.tag}が実行しやがりました`).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) })
