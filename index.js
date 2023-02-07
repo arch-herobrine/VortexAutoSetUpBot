@@ -251,7 +251,7 @@ client.on("messageCreate", async (msg) => {
             msg.channel.permissionOverwrites.set([{
                 id: msg.guild.roles.everyone,
                 allow: [],
-                deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS"],
+                deny: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads"],
                 type: "role"
             }],`${msg.author.tag}が実行しやがりました`).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) })
         } else {
@@ -261,7 +261,7 @@ client.on("messageCreate", async (msg) => {
         if (msg.member.permissions.has("ManageChannels") || isArch()) {
             msg.channel.permissionOverwrites.set([{
                 id: msg.guild.roles.everyone,
-                allow: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS"],
+                allow: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads"],
                 deny: [],
                 type: "role"
             }],`${msg.author.tag}が実行しやがりました`).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) })
@@ -287,7 +287,7 @@ client.on("channelCreate", async (ch) => {
                         {
                             id: '1070580833360027668',
                             allow: [],
-                            deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS", "CONNECT", "SPEAK"],
+                            deny: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads", "Connect", "Speak"],
                             type: "role"
                         }
                     ], '全自動MuteRoleSetUp');
@@ -298,7 +298,7 @@ client.on("channelCreate", async (ch) => {
                         {
                             id: '1070580833360027668',
                             allow: [],
-                            deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS", "CONNECT", "SPEAK"],
+                            deny: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads", "Connect", "Speak"],
                             type: "role"
                         }
                     ], '全自動MuteRoleSetUp');
@@ -309,7 +309,7 @@ client.on("channelCreate", async (ch) => {
                         {
                             id: '1070580833360027668',
                             allow: [],
-                            deny: ["CONNECT"],
+                            deny: ["Connect"],
                             type: "role"
                         }
                     ], '全自動MuteRoleSetUp');
@@ -320,7 +320,7 @@ client.on("channelCreate", async (ch) => {
                         {
                             id: '1070580833360027668',
                             allow: [],
-                            deny: ['ADD_REACTIONS', "SEND_MESSAGES", "CREATE_PUBLIC_THREADS", "CREATE_PRIVATE_THREADS"],
+                            deny: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads"],
                             type: "role"
                         }
                     ], '全自動MuteRoleSetUp');
