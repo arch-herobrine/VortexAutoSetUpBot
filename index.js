@@ -117,6 +117,12 @@ client.on("messageCreate", async (msg) => {
                         }, {
                             "name": "arch!unban <対象のユーザーのid>",
                             "value": "要BAN権限。こっちも監査ログには実行者のタグが入る。"
+                        }, {
+                            "name": "arch!lockdown",
+                            "value": "要チャンネル編集権限。@everyoneからこのコマンドを実行したチャンネルでの発言権を剥奪する。こっちも監査ログには実行者のタグが入る。"
+                        }, {
+                            "name": "arch!unlock",
+                            "value": "要チャンネル編集権限。`arch!lockdown`の解除。こっちも監査ログには実行者のタグが入る。"
                         }
                     ]
                 }
