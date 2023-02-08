@@ -56,7 +56,7 @@ client.on("guildMemberAdd", async (usr) => {
     }
     else{
         if(usr.guild.id == "1072645188234780703"){
-            (await client.channels.fetch("1072660328992735323")).send({enbeds:[{
+            (await client.channels.fetch("1072660328992735323")).send({embeds:[{
                     "title": "Welcome",
                     "description": `ようこそ、@${usr.user.tag}。\nあなたは${usr.guild.memberCount}人目のメンバーです。`,
                     "color": 3998965,
