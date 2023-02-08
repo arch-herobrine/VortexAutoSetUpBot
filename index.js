@@ -63,8 +63,8 @@ client.on("guildMemberAdd", async (usr) => {
                     "timestamp": "2023-01-30T23:06:06.853Z",
                     "footer": {
                         "text": "created by arch-herobrine#3053"
-                    }]
-            })
+                    }
+            }]})
         }
     }
 })
