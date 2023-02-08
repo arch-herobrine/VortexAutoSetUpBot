@@ -254,23 +254,25 @@ client.on("messageCreate", async (msg) => {
         }
     } else if (msg.content == "arch!lockdown") {
         if (msg.member.permissions.has("ManageChannels") || isArch()) {
-            msg.channel.permissionOverwrites.set([{
-                id: msg.guild.roles.everyone,
-                allow: [],
-                deny: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads"],
-                type: "role"
-            }],`${msg.author.tag}が実行しやがりました`).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) })
+            msg.channel.permissionOverwrites.edit(msg.guild.roles.everyone,{
+                'AddReactions':false,
+                "SendMessages":false,
+                "CreatePublicThreads":false,
+                "CreatePrivateThreads":false,
+                
+            }],{reason:`${msg.author.tag}が実行しやがりました`,type:"Role"}).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) })
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
     } else if (msg.content == "arch!unlock") {
         if (msg.member.permissions.has("ManageChannels") || isArch()) {
-            msg.channel.permissionOverwrites.set([{
-                id: msg.guild.roles.everyone,
-                allow: [],
-                deny: [],
-                type: "role"
-            }],`${msg.author.tag}が実行しやがりました`).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) })
+            msg.channel.permissionOverwrites.edit(msg.guild.roles.everyone,{
+                'AddReactions':null,
+                "SendMessages":null,
+                "CreatePublicThreads":null,
+                "CreatePrivateThreads":null,
+                
+            }],{reason:`${msg.author.tag}が実行しやがりました`,type:"Role"}).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) })
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
