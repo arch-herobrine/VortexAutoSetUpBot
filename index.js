@@ -5,6 +5,9 @@ const dayjs = require("dayjs")
 const utc = require('dayjs/plugin/utc')
 dayjs.extend(utc)
 dayjs().format()
+const ytdl = require('ytdl-core');
+const { entersState, AudioPlayerStatus, createAudioPlayer, createAudioResource, joinVoiceChannel,  StreamType } = require('@discordjs/voice');
+ 
 
 
 
@@ -38,7 +41,7 @@ var ga = `\`\`\`
 　（＿フ彡　　　　　 　　/　
 \`\`\``
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent] })
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] })
 
 client.token = process.env.token
 
