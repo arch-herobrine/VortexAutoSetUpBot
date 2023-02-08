@@ -18,8 +18,12 @@
   },
   "homepage": "https://github.com/arch-herobrine/VortexAutoSetUpBot#readme",
   "dependencies": {
+    "@discordjs/opus": "^0.8.0",
+    "@discordjs/voice": "^0.14.0",
     "dayjs": "^1.11.7",
     "discord.js": "^14.7.1",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "tweetnacl": "^1.0.3",
+    "ytdl-core": "^4.11.2"
   }
 }
