@@ -38,7 +38,7 @@ var ga = `\`\`\`
 　（＿フ彡　　　　　 　　/　
 \`\`\``
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] })
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent] })
 
 client.token = process.env.token
 
