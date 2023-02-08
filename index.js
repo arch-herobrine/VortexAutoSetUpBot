@@ -272,7 +272,7 @@ client.on("messageCreate", async (msg) => {
                 "CreatePublicThreads":null,
                 "CreatePrivateThreads":null,
                 
-            },{reason:`${msg.author.tag}が実行しやがりました`,type:"Role"}).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) })
+            },{reason:`${msg.author.tag}が実行しやがりました`,type:"Role"}).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) })
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
