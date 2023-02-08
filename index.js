@@ -54,6 +54,19 @@ client.on("guildMemberAdd", async (usr) => {
     if (usr.id == "1043782250543718420") {
         usr.ban({ reason: "anti Vortex JP", deleteMessageSeconds: 7 * 24 * 60 * 60 })
     }
+    else{
+        if(usr.guild.id == "1072645188234780703"){
+            (await client.channels.fetch("1072660328992735323")).send({enbeds:[{
+                    "title": "Welcome",
+                    "description": `ようこそ、@${usr.user.tag}。\nあなたは${usr.guild..memberCount}人目のメンバーです。`,
+                    "color": 3998965,
+                    "timestamp": "2023-01-30T23:06:06.853Z",
+                    "footer": {
+                        "text": "created by arch-herobrine#3053"
+                    }]
+            })
+        }
+    }
 })
 
 
@@ -280,65 +293,6 @@ client.on("messageCreate", async (msg) => {
 })
 
 
-
-
-//共栄圏専用
-client.on("channelCreate", async (ch) => {
-    if (ch.name == "🇰🇵┃荒ʖ‘し人民元") {
-        ch.send("ミュートロールセットアップ開始")
-        var chs = JSON.parse(JSON.stringify(ch.guild))
-        await chs.channels.forEach(function (i) {
-            var a = client.channels.cache.get(i)
-            if (a.type == "GuildCategory") {
-                (async () => {
-                    await a.permissionOverwrites.set([
-                        {
-                            id: '1070580833360027668',
-                            allow: [],
-                            deny: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads", "Connect", "Speak"],
-                            type: "role"
-                        }
-                    ], '全自動MuteRoleSetUp');
-                })()
-            } else if (a.type == "GuildVoice") {
-                (async () => {
-                    await a.permissionOverwrites.set([
-                        {
-                            id: '1070580833360027668',
-                            allow: [],
-                            deny: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads", "Connect", "Speak"],
-                            type: "role"
-                        }
-                    ], '全自動MuteRoleSetUp');
-                })()
-            } else if (a.type == "GuildStageVoice") {
-                (async () => {
-                    await a.permissionOverwrites.set([
-                        {
-                            id: '1070580833360027668',
-                            allow: [],
-                            deny: ["Connect"],
-                            type: "role"
-                        }
-                    ], '全自動MuteRoleSetUp');
-                })()
-            } else if (a.type == "GuildText") {
-                (async () => {
-                    await a.permissionOverwrites.set([
-                        {
-                            id: '1070580833360027668',
-                            allow: [],
-                            deny: ['AddReactions', "SendMessages", "CreatePublicThreads", "CreatePrivateThreads"],
-                            type: "role"
-                        }
-                    ], '全自動MuteRoleSetUp');
-                })()
-            }
-        })
-        ch.send("ミュートロールセットアップ完了")
-    }
-}
-)
 
 client.on("ready", () => {
     emojis.check = client.emojis.resolve("1070948763616673862")
