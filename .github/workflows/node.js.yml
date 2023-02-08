@@ -32,6 +32,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i
-    - run: token=${{ secrets.TOKEN }} node index.js
+    - run: token=${{ secrets.TOKEN }} token2=${{ secrets.TOKEN2 }} node index.js
 
 
