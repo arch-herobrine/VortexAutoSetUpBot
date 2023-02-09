@@ -70,13 +70,15 @@ client.on("guildMemberAdd", async (usr) => {
         }
     }
 })
-var aaa;
+const dummyclient = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] })
+dummyclient.on("ready",async()=>{var aaa;
 aaa=setInterval(async()=>{
-    if(((await client.guilds.fetch("1065125038732357672")).members.fetch("1069065227355824238")).presence.status=="online"){return}
+    if(((await dummyclient.guilds.fetch("1065125038732357672")).members.fetch("1069065227355824238")).presence.status=="online"){return}
     client.login()
     clearInterval(aaa)
-  },100)
+  },100)}
 
+dummyclient.login(process.env["token2"])
 
 
 //commands
