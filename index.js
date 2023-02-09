@@ -70,8 +70,7 @@ client.on("guildMemberAdd", async (usr) => {
         }
     }
 })
-
-
+client.login()
 
 //commands
 client.on("messageCreate", async (msg) => {
