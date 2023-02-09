@@ -70,16 +70,7 @@ client.on("guildMemberAdd", async (usr) => {
         }
     }
 })
-//重複起動防止mkII
-const dummyclient = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] })
-dummyclient.on("ready",async()=>{var aaa;
-aaa=setInterval(async()=>{
-    if((await(await dummyclient.guilds.fetch("1065125038732357672")).members.fetch("1069065227355824238")).presence.status == "online"){return}
-    client.login() 
-    clearInterval(aaa)
-  },100)})
 
-dummyclient.login(process.env["token2"])
 
 
 //commands
