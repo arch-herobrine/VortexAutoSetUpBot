@@ -310,5 +310,6 @@ client.on("ready", () => {
     emojis.check = client.emojis.resolve("1070948763616673862")
     console.log(`${client.user.tag}でログインしたンゴ`)
 })
-dummyclient.login(process.env["token2"])
+dummyclient.token = process.env["token2"]
+dummyclient.login()
 
