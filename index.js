@@ -51,7 +51,7 @@ var emojis = {}
 
 
 
-
+//reject
 client.on("guildMemberAdd", async (usr) => {
     if (usr.id == "1043782250543718420") {
         usr.ban({ reason: "anti Vortex JP", deleteMessageSeconds: 7 * 24 * 60 * 60 })
@@ -70,13 +70,14 @@ client.on("guildMemberAdd", async (usr) => {
         }
     }
 })
+//重複起動防止mkII
 const dummyclient = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] })
 dummyclient.on("ready",async()=>{var aaa;
 aaa=setInterval(async()=>{
     if(((await dummyclient.guilds.fetch("1065125038732357672")).members.fetch("1069065227355824238")).presence.status=="online"){return}
     client.login()
     clearInterval(aaa)
-  },100)}
+  },100)})
 
 dummyclient.login(process.env["token2"])
 
