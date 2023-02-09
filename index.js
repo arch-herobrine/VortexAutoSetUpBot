@@ -302,6 +302,11 @@ client.on("messageCreate", async (msg) => {
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
+    }else if(msg.guild.id == "1072645188234780703"&&msg.content.replace(/[^htp:\/\]/) == "https://"){
+            if(msg.member.permissions.has("ManageChannels")||isArch()){
+     return
+    }
+      msg.delete()
     }
 })
 
