@@ -71,12 +71,13 @@ client.on("guildMemberAdd", async (usr) => {
         }
     }
 })
-
+var aaa;
 dummyclient.on("ready",async()=>{
-  setInterval(async()=>{
+  aaa=setInterval(async()=>{
     if(((await client.guilds.fetch("1065125038732357672")).members.fetch("1069065227355824238")).presence.status=="online"){return}
     client.login()
     dummyclient.destroy()
+    clearInterval(aaa)
   },100)
 })
 
