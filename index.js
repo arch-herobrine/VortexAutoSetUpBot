@@ -8,7 +8,7 @@ dayjs().format()
 const ytdl = require('ytdl-core');
 const { entersState, AudioPlayerStatus, createAudioPlayer, createAudioResource, joinVoiceChannel,  StreamType } = require('@discordjs/voice');
  
-var dummyclient = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] })
+const dummyclient = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] })
 
 
 process.on('uncaughtException', function (err) {
@@ -310,5 +310,5 @@ client.on("ready", () => {
     emojis.check = client.emojis.resolve("1070948763616673862")
     console.log(`${client.user.tag}でログインしたンゴ`)
 })
-dummyclinet.login(process.env["token2"])
+dummyclient.login(process.env["token2"])
 
