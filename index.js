@@ -299,6 +299,7 @@ client.on("messageCreate", async (msg) => {
         }
         msg.delete()
     } else if (msg.content.split(" ")[0] == "arch!play") {
+        var url = msg.content.split(" ")[1]
         if (!ytdl.validateURL(url)) {
             msg.reply("Falal Error()")
             return
