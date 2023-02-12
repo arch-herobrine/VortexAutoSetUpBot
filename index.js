@@ -45,7 +45,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 client.token = process.env.token
 
 
-var connection;
+var connection={};
 //絵文字s
 var emojis = {}
 
@@ -140,6 +140,12 @@ client.on("messageCreate", async (msg) => {
                         }, {
                             "name": "arch!unlock",
                             "value": "要チャンネル編集権限。`arch!lockdown`の解除。こっちも監査ログには実行者のタグが入る。"
+                        }, {
+                          "name": "arch!play <youtubeのURL>",
+                          "value": "音楽再生"
+                        }, {
+                          "name": "arch!stop",
+                          "value": "音楽止める"
                         }
                     ]
                 }
@@ -309,7 +315,7 @@ client.on("messageCreate", async (msg) => {
             msg.reply("先にボイチャに接続してクレメンス()")
             return
         }
-        connection = joinVoiceChannel({
+        connection[msg.guild.id] = joinVoiceChannel({
             adapterCreator: channel.guild.voiceAdapterCreator,
             channelId: channel.id,
             guildId: channel.guild.id,
@@ -317,7 +323,7 @@ client.on("messageCreate", async (msg) => {
             selfMute: false,
         });
         const player = createAudioPlayer();
-        connection.subscribe(player);
+        connection[msg.guild.id].subscribe(player);
         const stream = ytdl(ytdl.getURLVideoID(url), {
             filter: format => format.audioCodec === 'opus' && format.container === 'webm', //webm opus
             quality: 'highest',
@@ -327,16 +333,17 @@ client.on("messageCreate", async (msg) => {
             inputType: StreamType.WebmOpus
         });
         player.play(resource);
+        msg.reply(`${url} を再生したよたぶん()`)
         entersState(player, AudioPlayerStatus.Playing, 10 * 1000).then(function () {
             entersState(player, AudioPlayerStatus.Idle, 24 * 60 * 60 * 1000).then(function () {
-                connection.destroy()
+                connection[msg.guild.id].destroy()
             })
         })
         
 
     } else if (msg.content == "arch!stop") {
         msg.reply("たぶん流してた音楽止めたよ()")
-        connection.destroy()
+        connection[msg.guild.id].destroy()
     }
 })
 
