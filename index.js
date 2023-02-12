@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits } = require("discord.js"), dotenv = require("dotenv")
+const { Client, GatewayIntentBits, ReactionUserManager } = require("discord.js"), dotenv = require("dotenv")
 dotenv.config()
 
 const dayjs = require("dayjs")
@@ -6,8 +6,8 @@ const utc = require('dayjs/plugin/utc')
 dayjs.extend(utc)
 dayjs().format()
 const ytdl = require('ytdl-core');
-const { entersState, AudioPlayerStatus, createAudioPlayer, createAudioResource, joinVoiceChannel,  StreamType } = require('@discordjs/voice');
- 
+const { entersState, AudioPlayerStatus, createAudioPlayer, createAudioResource, joinVoiceChannel, StreamType } = require('@discordjs/voice');
+
 
 
 process.on('uncaughtException', function (err) {
@@ -40,12 +40,12 @@ var ga = `\`\`\`
 　（＿フ彡　　　　　 　　/　
 \`\`\``
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] })
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] })
 
 client.token = process.env.token
 
 
-
+var connection;
 //絵文字s
 var emojis = {}
 
@@ -56,9 +56,10 @@ client.on("guildMemberAdd", async (usr) => {
     if (usr.id == "1043782250543718420") {
         usr.ban({ reason: "anti Vortex JP", deleteMessageSeconds: 7 * 24 * 60 * 60 })
     }
-    else{
-        if(usr.guild.id == "1072645188234780703"){
-            (await client.channels.fetch("1072660328992735323")).send({embeds:[{
+    else {
+        if (usr.guild.id == "1072645188234780703") {
+            (await client.channels.fetch("1072660328992735323")).send({
+                embeds: [{
                     "title": "Welcome",
                     "description": `ようこそ、${usr.user}。\nあなたは${usr.guild.memberCount}人目のメンバーです。`,
                     "color": 3998965,
@@ -66,7 +67,8 @@ client.on("guildMemberAdd", async (usr) => {
                     "footer": {
                         "text": "created by arch-herobrine#3053"
                     }
-            }]})
+                }]
+            })
         }
     }
 })
@@ -269,33 +271,71 @@ client.on("messageCreate", async (msg) => {
         }
     } else if (msg.content == "arch!lockdown") {
         if (msg.member.permissions.has("ManageChannels") || isArch()) {
-            msg.channel.permissionOverwrites.edit(msg.guild.roles.everyone,{
-                'AddReactions':false,
-                "SendMessages":false,
-                "CreatePublicThreads":false,
-                "CreatePrivateThreads":false,
-                
-            },{reason:`${msg.author.tag}が実行しやがりました`,type:"Role"}).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) })
+            msg.channel.permissionOverwrites.edit(msg.guild.roles.everyone, {
+                'AddReactions': false,
+                "SendMessages": false,
+                "CreatePublicThreads": false,
+                "CreatePrivateThreads": false,
+
+            }, { reason: `${msg.author.tag}が実行しやがりました`, type: "Role" }).then(() => { msg.reply(`${emojis.check}こ↑こ↓をロックしたンゴ`) })
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
     } else if (msg.content == "arch!unlock") {
         if (msg.member.permissions.has("ManageChannels") || isArch()) {
-            msg.channel.permissionOverwrites.edit(msg.guild.roles.everyone,{
-                'AddReactions':null,
-                "SendMessages":null,
-                "CreatePublicThreads":null,
-                "CreatePrivateThreads":null,
-                
-            },{reason:`${msg.author.tag}が実行しやがりました`,type:"Role"}).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) })
+            msg.channel.permissionOverwrites.edit(msg.guild.roles.everyone, {
+                'AddReactions': null,
+                "SendMessages": null,
+                "CreatePublicThreads": null,
+                "CreatePrivateThreads": null,
+
+            }, { reason: `${msg.author.tag}が実行しやがりました`, type: "Role" }).then(() => { msg.reply(`${emojis.check}こ↑こ↓を解放したンゴ`) })
         } else {
             msg.reply({ content: "お前に権限ねーから！", files: ["お前の席ねーから.png"] })
         }
-    }else if(msg.guild.id == "1072645188234780703"&&msg.content.replace(/[^htp:\/]/,"") == "http://"){
-            if(msg.member.permissions.has("ManageChannels")||isArch()){
-     return
-    }
-      msg.delete()
+    } else if (msg.guild.id == "1072645188234780703" && msg.content.replace(/[^htp:\/]/, "") == "http://") {
+        if (msg.member.permissions.has("ManageChannels") || isArch()) {
+            return
+        }
+        msg.delete()
+    } else if (msg.content.split(" ")[0] == "arch!play") {
+        if (!ytdl.validateURL(url)) {
+            msg.reply("Falal Error()")
+            return
+        }
+        const channel = msg.member.voice.channel;
+        if (!channel) {
+            msg.reply("先にボイチャに接続してクレメンス()")
+            return
+        }
+        connection = joinVoiceChannel({
+            adapterCreator: channel.guild.voiceAdapterCreator,
+            channelId: channel.id,
+            guildId: channel.guild.id,
+            selfDeaf: true,
+            selfMute: false,
+        });
+        const player = createAudioPlayer();
+        connection.subscribe(player);
+        const stream = ytdl(ytdl.getURLVideoID(url), {
+            filter: format => format.audioCodec === 'opus' && format.container === 'webm', //webm opus
+            quality: 'highest',
+            highWaterMark: 32 * 1024 * 1024, // https://github.com/fent/node-ytdl-core/issues/902
+        });
+        const resource = createAudioResource(stream, {
+            inputType: StreamType.WebmOpus
+        });
+        player.play(resource);
+        entersState(player, AudioPlayerStatus.Playing, 10 * 1000).then(function () {
+            entersState(player, AudioPlayerStatus.Idle, 24 * 60 * 60 * 1000).then(function () {
+                connection.destroy()
+            })
+        })
+        
+
+    } else if (msg.content == "arch!stop") {
+        msg.reply("たぶん流してた音楽止めたよ()")
+        connection.destroy
     }
 })
 
