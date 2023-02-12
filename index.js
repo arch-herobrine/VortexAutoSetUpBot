@@ -336,7 +336,7 @@ client.on("messageCreate", async (msg) => {
 
     } else if (msg.content == "arch!stop") {
         msg.reply("たぶん流してた音楽止めたよ()")
-        connection.destroy
+        connection.destroy()
     }
 })
 
